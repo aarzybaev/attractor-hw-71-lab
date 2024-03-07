@@ -1,6 +1,6 @@
-import {useAppDispatch, useAppSelector} from '../../app/hooks';
+import {useAppDispatch} from '../../app/hooks';
 import {useSelector} from 'react-redux';
-import {selectDeleteLoading, selectDishes, selectFetchLoading, selectOneDish} from '../../store/dishesSlice';
+import {selectDeleteLoading, selectDishes, selectFetchLoading} from '../../store/dishesSlice';
 import {useEffect} from 'react';
 import {fetchAll, removeDish} from '../../store/dishesThunks';
 import DishItem from './DishItem';
@@ -13,12 +13,10 @@ const dispatch = useAppDispatch();
 const dishItems = useSelector(selectDishes);
 const fetchLoading = useSelector(selectFetchLoading);
 const deleteLoading = useSelector(selectDeleteLoading);
-  const oneDish = useAppSelector(selectOneDish);
 
 
   useEffect( () => {
       dispatch(fetchAll());
-      console.log(oneDish);
   }, [dispatch]);
 
   const removeDishHandler = async (id: string) => {
