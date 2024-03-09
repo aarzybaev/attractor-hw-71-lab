@@ -6,7 +6,11 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
-        <NavLink to="/" className="navbar-brand">Turtle pizza {!isHome ? ":: Admin": ""}</NavLink>
+        {isHome?
+          <NavLink to="/" className="navbar-brand">Turtle pizza</NavLink> :
+          <NavLink to="/admin" className="navbar-brand">Turtle pizza :: Admin</NavLink>
+        }
+
         {!isHome && <div className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
