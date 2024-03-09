@@ -13,6 +13,7 @@ const Cart: React.FC<Props> = ({cartDishes, cartTotalPrice}) => {
   const removeCartDish = (id: string) => {
     dispatch(removeCartItem(id));
   };
+
   return (
     <div>
       <h5>Cart</h5>
@@ -23,13 +24,19 @@ const Cart: React.FC<Props> = ({cartDishes, cartTotalPrice}) => {
           removeCartItem={() => removeCartDish(cartDish.dish.id)}
         />
       ))}
+      {cartTotalPrice !==0 ? (<div className="card mb-2 p-2">
+        <div className="d-flex align-items-center">
+          <div className="col">Delivery</div>
+          <div className="col ps-5">150 KGS</div>
+        </div>
+      </div>) : <></>}
       <div className="card border-0 p2">
         <div className="row">
           <div className="col">
             Total:
           </div>
           <div className="col ps-4">
-            <strong>{cartTotalPrice}</strong> KGS
+            <strong>{cartTotalPrice !== 0 ? cartTotalPrice + 150 : 0}</strong> KGS
           </div>
         </div>
       </div>

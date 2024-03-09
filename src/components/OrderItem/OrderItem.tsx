@@ -16,7 +16,7 @@ const OrderItem: React.FC<Props> = ({
 }) => {
   const isLoading = isRemoveLoading === orderID;
   const getTotalPrice = () :number => {
-    return orderItems.reduce((acc, curr) => acc += curr.dish.price * curr.amount, 0);
+    return orderItems.reduce((acc, curr) => acc += curr.dish.price * curr.amount, 150);
   };
   return (
     <div>
@@ -26,6 +26,10 @@ const OrderItem: React.FC<Props> = ({
           <div className="col-auto fw-medium">{item.dish.price} KGS</div>
         </div>
       ))}
+      <div  className="d-flex justify-content-between">
+        <div className="col-6">Delivery</div>
+        <div className="col-auto fw-medium">150 KGS</div>
+      </div>
       <div className="col d-flex justify-content-between my-2">
         <div className="fw-bold">
           Order total: {getTotalPrice()} KGS
