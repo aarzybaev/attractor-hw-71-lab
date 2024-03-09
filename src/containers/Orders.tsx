@@ -57,7 +57,7 @@ const orderCompleteHandler = async (id: string) => {
     <div className="row mt-3">
       <h4>Orders</h4>
       {Object.keys(newObj).map(orderID => (
-        <div key={Math.random()} className="col-8  m-auto d-flex flex-column border border-light border-1 mt-1">
+        <div key={orderID} className="col-8  m-auto d-flex flex-column border border-light border-1 mt-1">
           {
               <OrderItem
                 orderItems={newObj[orderID]}

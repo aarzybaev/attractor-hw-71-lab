@@ -21,7 +21,7 @@ const OrderItem: React.FC<Props> = ({
   return (
     <div>
       {orderItems.map(item => (
-        <div key={Math.random()} className="d-flex justify-content-between">
+        <div key={item.dish.id} className="d-flex justify-content-between">
           <div className="col-6">{item.amount}x {item.dish.title}</div>
           <div className="col-auto fw-medium">{item.dish.price} KGS</div>
         </div>
