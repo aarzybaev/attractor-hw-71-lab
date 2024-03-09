@@ -2,20 +2,25 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {ApiDish, ApiDishes, Dish, FetchError, UpdateDishParams} from '../types';
 import axiosAPI from '../axiosAPI';
 import {isAxiosError} from 'axios';
+import {AppDispatch} from '../app/store';
+import {updateDishes} from './cartSlice';
 
-export const fetchAll = createAsyncThunk<Dish[], void>(
+export const fetchAll = createAsyncThunk<Dish[], void, {dispatch: AppDispatch}>(
   'dishes/fetchAll',
-  async () => {
+  async (_arg, thunkAPI) => {
     const {data: dishes} = await axiosAPI.get<ApiDishes | null>("/pizzas/dishes.json");
+
+    let newDishes: Dish[] = [];
+
     if (dishes) {
-      return Object
+      newDishes =  Object
         .keys(dishes)
         .map((id: string) => {
           return ({...dishes[id], id});
         });
-    } else {
-      return [];
+      thunkAPI.dispatch(updateDishes(newDishes));
     }
+    return newDishes;
   }
 );
 
